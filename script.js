@@ -15,14 +15,22 @@ const createCustomElement = (element, className, innerText) => {
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
-
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
   return section;
 };
+
+const returnFetch = async () => {
+const sectionItems = document.querySelector('.items');
+console.log(sectionItems);
+const pc = await fetchProducts('computador');
+pc.results.forEach(({ id: sku, title: name, thumbnail: image }) => {
+  sectionItems.appendChild(createProductItemElement({ sku, name, image }));
+});
+};
+returnFetch();
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
