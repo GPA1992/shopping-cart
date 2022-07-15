@@ -1,6 +1,8 @@
 const cartItems = document.querySelector('.cart__items');
 const totalPrice = document.querySelector('.total-price');
 const clearButton = document.querySelector('.empty-cart');
+const sectionItems = document.querySelector('.items');
+
 const arrPrice = [];
 const priceToRemove = [];
 const sum = (arr) => Math.round(arr
@@ -55,12 +57,12 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 const addFetchProduct = async () => {
-  const sectionItems = document.querySelector('.items');
   const pc = await fetchProducts('computador');
+  document.querySelector('.loading').remove(); 
   pc.results.forEach(({ id: sku, title: name, thumbnail: image }) => {
     sectionItems.appendChild(createProductItemElement({ sku, name, image }));
   });
-  };
+};
 
 const addToCart = () => {
   const botao = document.querySelectorAll('.item__add');
