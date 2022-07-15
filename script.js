@@ -48,7 +48,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
     saveCartItems(cartItems.innerHTML);
     priceToRemove.push(salePrice);  
     const subtraction = sum(arrPrice) - sum(priceToRemove);
-    totalPrice.innerText = `Valor Total ${Math.round(subtraction * 100) / 100}`;
+    totalPrice.innerText = Math.round(subtraction * 100) / 100;
   });
   return li;
 };
@@ -71,7 +71,7 @@ const addToCart = () => {
         localStorage.clear();
         saveCartItems(cartItems.innerHTML);
         arrPrice.push(salePrice);
-        totalPrice.innerText = `Valor Total ${sum(arrPrice)}`;
+        totalPrice.innerText = sum(arrPrice);
      });
    });
 };  
