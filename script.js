@@ -1,5 +1,6 @@
 const cartItems = document.querySelector('.cart__items');
 const totalPrice = document.querySelector('.total-price');
+const clearButton = document.querySelector('.empty-cart');
 const arrPrice = [];
 const priceToRemove = [];
 const sum = (arr) => Math.round(arr
@@ -86,10 +87,17 @@ const removeItem = () => {
     });
   });
 };
+const clearCartItem = () => {
+  clearButton.addEventListener('click', () => {
+    cartItems.innerHTML = '';
+    totalPrice.innerText = '';
+  });
+};
 
 window.onload = async () => {  
   await addFetchProduct();
   addToCart();
   getStorage();
   removeItem();
+  clearCartItem();
 };
